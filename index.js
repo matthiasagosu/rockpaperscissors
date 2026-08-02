@@ -45,7 +45,6 @@ function playRound(humanChoice, computerChoice) {
     thisRoundWinner[2],
   );
   updateScores(thisRoundWinner[0]);
-  console.log(humanScore, computerScore);
 }
 
 function getRoundWinner(humanChoice, computerChoice) {
@@ -84,7 +83,21 @@ function updateScores(winner) {
   }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame(rounds) {
+  for (let index = 0; index < rounds; index++) {
+    playRound(getHumanChoice(), getComputerChoice());
+  }
 
-playRound(humanSelection, computerSelection);
+  alert(
+    `Game over, AFTER ${rounds} rounds YOUR SCORE: ${humanScore} COMPUTER SCORE: ${computerScore}`,
+  );
+  if (computerScore === humanScore) {
+    alert("This is a tie! There is no winner!");
+  } else if (humanScore > computerScore) {
+    alert("CONGRATULATIONS!!! YOU HAVE WON THE GAME!!!");
+  } else if (humanScore < computerScore) {
+    alert("You lost the game! Better luck next time!");
+  }
+}
+
+playGame(5);
